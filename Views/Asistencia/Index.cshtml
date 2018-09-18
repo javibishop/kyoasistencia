@@ -97,7 +97,7 @@
         var token = $('[name=__RequestVerificationToken]').val();
         var turno = $('[name=turnos]').val();;
         var fecha = $('[name=datepicker]').val();;
-        var data = { ids: idAs, turno: turno, fecha: fecha };
+        var data = { __RequestVerificationToken: token, ids: idAs, turno: turno, fecha: fecha };
         if (idAs.length > 0) {
             $.ajax({
                 url: '@Url.Action("GuardarAsistencia", "Asistencia")',
@@ -106,7 +106,7 @@
                 type: "POST",
                 async: false,
                 dataType: 'json',
-                contentType: "application/json; charset=utf-8",
+                contentType:  "application/json; charset=utf-8",
                 error: function (response) {
                     alert(response.responseText);
                 },
