@@ -10,7 +10,10 @@
 
 <div class="form-inline">
     <div class="col-md-10">
-        @Html.DropDownListFor(model => model.Anio, (List<SelectListItem>)ViewBag.Anios, "-- Seleccionar Año --", new { @id="aniocombo", @class = "form-control" })
+        @Html.DropDownListFor(model => model.Anio, (List<SelectListItem>)ViewBag.Anios, "-- Seleccionar Año --", new { @id = "aniocombo", @class = "form-control" })
+    </div>
+    <div class="col-md-10">
+        @Html.DropDownListFor(model => model.Mes, (List<SelectListItem>)ViewBag.Meses, "-- Seleccionar Mes --", new { @id = "mescombo", @class = "form-control" })
         <button id="generar" onclick="generar();">Graficar</button>
     </div>
 </div>
@@ -32,9 +35,9 @@
 
     function generar() {
         var anio = $("#aniocombo").val();
-        var alumno = getParameterByName('alumnoid');
-
-        $.get("/asistencia/generargrafico?anio=" + anio + "&alumnoId=" + alumno + "&dojoId=1", function (data) {
+        var mes = $("#mescombo").val();
+        
+        $.get("/asistencia/generargraficoAlumnosMes?anio=" + anio + "&mes=" + mes + "&dojoId=1", function (data) {
             var data1 = [];
             var data2 = [];
             var ColorFondo1 = [];
